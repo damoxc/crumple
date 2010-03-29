@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Crumple ${version}</title>
+        
+        <link rel="shortcut icon" href="${base}icons/deluge.png" type="image/png" />
+        <link rel="icon" href="${base}icons/deluge.png" type="image/png" />
+        
+        <!-- Stylesheets -->
+        % for stylesheet in stylesheets:
+        <link rel="stylesheet" type="text/css" href="${base}${stylesheet}" />
+        % endfor
+
+        <script type="text/javascript">
+		crumple = {
+			author: 'Damien Churchill <damoxc@gmail.com>',
+			version: '${version}',
+			config: ${js_config}
+		}
+        </script>
+
+        <!-- Javascript -->
+        % for script in scripts:
+        <script type="text/javascript" src="${base}${script}"></script>
+        % endfor
+    </head>
+    <body>
+        <div style="background-image: url('${base}themes/default/tree/loading.gif');"></div>
+    </body>
+</html>
