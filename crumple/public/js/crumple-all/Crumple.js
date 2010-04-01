@@ -36,7 +36,12 @@ Ext.apply(crumple, {
 			layout: 'card'
 		});
 
-		this.sidebar = new Crumple.Sidebar();
+		this.sidebar = new Ext.Panel({
+			width: 200,
+			region: 'west',
+			split: true,
+			layout: 'accordion'
+		});
 
 		this.statusbar = new Ext.ux.StatusBar({
 			text: 'Crumple v' + this.version
@@ -52,6 +57,8 @@ Ext.apply(crumple, {
 			layout: 'fit',
 			items: [this.panel]
 		});
+
+		this.mail = new Crumple.mail.MailController();
 	}
 
 });
