@@ -40,9 +40,13 @@ class TopLevel(ExtJSTopLevel):
     def __init__(self):
         ExtJSTopLevel.__init__(self, rpath('public'), rpath('templates'), '/', 'dev' in get_version(), rpath('gettext.js'))
         # configure the scripts
-        self.js.add_folder('crumple-all', rpath('public', 'js', 'crumple-all'), 'dev')
-        self.js.add_file('crumple-all.js', rpath('public', 'js', 'crumple-all-debug.js'), 'debug')
-        self.js.add_file('crumple-all.js', rpath('public', 'js', 'crumple-all.js'))
+        self.js.add_folder('crumple-all',
+            rpath('public', 'js', 'crumple-all'), 'dev')
+        
+        self.js.add_file('crumple-all-debug.js',
+            rpath('public', 'js', 'crumple-all-debug.js'), 'debug')
+        self.js.add_file('crumple-all.js',
+            rpath('public', 'js', 'crumple-all.js'))
 
 class CrumpleServer(CorkscrewServer):
     
