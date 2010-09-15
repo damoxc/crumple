@@ -50,12 +50,14 @@ Ext.apply(crumple, {
 		this.panel = new Ext.Panel({
 			layout: 'border',
 			items: [this.sidebar, this.content],
-			bbar: this.statusbar
+			bbar: this.statusbar,
+			border: false
 		});
 
 		this.viewport = new Ext.Viewport({
 			layout: 'fit',
-			items: [this.panel]
+			items: [this.panel],
+			border: false
 		});
 
 		this.mail = new Crumple.mail.MailController();
