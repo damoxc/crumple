@@ -22,8 +22,11 @@
 
 import os
 import logging
+
 from corkscrew.server import CorkscrewServer, ExtJSTopLevel
+
 from crumple.common import get_version
+from crumple.jsonapi import Core
 
 log = logging.getLogger(__name__)
 
@@ -47,6 +50,9 @@ class TopLevel(ExtJSTopLevel):
             rpath('public', 'js', 'crumple-all-debug.js'), 'debug')
         self.js.add_file('crumple-all.js',
             rpath('public', 'js', 'crumple-all.js'))
+        
+        self.theme = 'gray'
+        self.json.register_object(Core())
 
 class CrumpleServer(CorkscrewServer):
     

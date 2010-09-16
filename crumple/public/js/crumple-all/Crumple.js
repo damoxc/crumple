@@ -61,6 +61,10 @@ Ext.apply(crumple, {
 		});
 
 		this.mail = new Crumple.mail.MailController();
+		this.mail.initialize();
+
+		this.loginWindow = new Crumple.LoginWindow();
+		this.loginWindow.show();
 	}
 
 });

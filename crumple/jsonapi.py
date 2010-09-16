@@ -19,3 +19,40 @@
 #   51 Franklin Street, Fifth Floor
 #   Boston, MA    02110-1301, USA.
 #
+
+from twisted.internet import defer, reactor
+from corkscrew.jsonrpc import export
+
+from crumple.imap import IMAP4ClientFactory
+
+class UserSession(object):
+
+    def __init__(self, hostname, username, password):
+        self.hostname = hostname
+        self.username = username
+        self.password = password
+
+        onConn = defer.Deferred(
+            ).addCallback(self.on_server_greeting, username, password
+            ).addErrback(self.on_connection_error)
+
+        self.factory = IMAP4ClientFactory(username, onConn)
+        self.connection = reactor.connectTCP(hostname, 143, self.factory)
+
+    def on_server_greeting(self, *args):
+        pass
+
+    def on_connection_error(self, *args):
+        pass
+
+class Core(object):
+
+    def __init__(self):
+        self.sessions = {}
+
+    @export
+    def login(self, username, password, server='localhost'):
+        username = username.lower()
+        session = self.sessions.setdefault(username, UserSession(
+            username, password))
+
