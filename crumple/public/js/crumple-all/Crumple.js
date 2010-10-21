@@ -64,9 +64,14 @@ Ext.apply(crumple, {
 		this.mail.initialize();
 
 		this.loginWindow = new Crumple.LoginWindow();
-		this.loginWindow.show();
-	}
 
+		this.client = new Ext.ux.util.RpcClient({
+			url: '/json'
+		});
+		this.client.on('connected', function(e) {
+			this.loginWindow.show();
+		}, this, {single: true});
+	}
 });
 
 Ext.onReady(function() {
