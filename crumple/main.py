@@ -24,7 +24,9 @@ import os
 import optparse
 
 def main():
-    parser = optparse.OptionParser()
+    from crumple import common
+
+    parser = optparse.OptionParser(version=common.get_version())
     parser.add_option('-b', '--base', dest='base', action='store',
         help='Set the base path that crumpled is running on (proxying)')
     parser.add_option('-f', '--fork', dest='fork', action='store_true',
@@ -35,7 +37,6 @@ def main():
         help='Profile the web server code')
     (options, args) = parser.parse_args()
 
-    from crumple import common
     
     if options.fork and not common.windows_check():
 
