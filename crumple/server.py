@@ -38,10 +38,15 @@ def rpath(*paths):
 
 class TopLevel(ExtJSTopLevel):
 
-    jsonrpc = 'json'
+    base      = '/'
+    dev_mode  = False
+    gettext   = rpath('gettext.js')
+    jsonrpc   = 'json'
+    public    = rpath('public')
+    templates = rpath('templates')
 
     def __init__(self):
-        ExtJSTopLevel.__init__(self, rpath('public'), rpath('templates'), '/', 'dev' in get_version(), rpath('gettext.js'))
+        ExtJSTopLevel.__init__(self)
         # configure the scripts
         self.js.add_folder('crumple-all',
             rpath('public', 'js', 'crumple-all'), 'dev')
