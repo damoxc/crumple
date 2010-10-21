@@ -39,7 +39,7 @@ def rpath(*paths):
 class TopLevel(ExtJSTopLevel):
 
     base      = '/'
-    dev_mode  = False
+    dev_mode  = 'dev' in get_version()
     gettext   = rpath('gettext.js')
     jsonrpc   = 'json'
     public    = rpath('public')
