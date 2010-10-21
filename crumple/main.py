@@ -21,6 +21,7 @@
 #
 
 import os
+import logging
 import optparse
 
 def main():
@@ -49,6 +50,11 @@ def main():
             os._exit(0)
 
         os.chdir('/')
+
+    logging.basicConfig(
+        level = logging.DEBUG,
+        format = '%(asctime)s %(levelname)-5s [%(module)s:%(lineno)d] %(message)s'
+    )
 
     from crumple import server
     _server = server.CrumpleServer()
