@@ -48,8 +48,7 @@ Crumple.LoginWindow = Ext.extend(Ext.Window, {
 				fieldLabel: 'Password'
 			}, {
 				name: 'server',
-				fieldLabel: 'Server',
-				value: 'imap.digitalnetworks.co.uk'
+				fieldLabel: 'Server'
 			}]
 		});
 		this.addButton('Login', this.onLogin, this);
