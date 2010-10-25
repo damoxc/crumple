@@ -58,8 +58,15 @@ Crumple.LoginWindow = Ext.extend(Ext.Window, {
 		var fv = this.form.getForm().getValues();
 		crumple.client.core.login(fv.username, fv.password, fv.server, {
 			success: function(result) {
-				alert(result);
-			}
+				if (result) {
+					this.hide();
+					crumple.events.fireEvent('login');
+				}
+			},
+			failure: function(error) {
+				
+			},
+			scope: this
 		});
 	}
 
