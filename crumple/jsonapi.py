@@ -27,6 +27,8 @@ from corkscrew.jsonrpc import export
 from crumple.imap import IMAP4ClientFactory
 from twisted.internet import defer, reactor
 
+log = logging.getLogger(__name__)
+
 class UserSession(object):
 
     def __init__(self, hostname, username, password):
@@ -40,14 +42,18 @@ class UserSession(object):
         self.factory = IMAP4ClientFactory(username, self.connected_defer)
 
     def connect(self):
+        log.info('connecting to %s', self.hostname)
         self.connection = reactor.connectTCP(self.hostname, 143, self.factory)
         return self.connected_defer
 
-    def on_server_greeting(self, *args):
+    def on_server_greeting(self, client, username, password):
         log.info('connected %s', self.username)
+        self.client = client
+        return True
 
     def on_connection_error(self, *args):
-        pass
+        log.warning('connection failed for %s', self.username)
+        return False
 
 class Core(object):
 
